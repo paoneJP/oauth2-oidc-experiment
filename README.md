@@ -16,7 +16,8 @@ Install required packages with pip command.
 ## create your server certificate
 
 With openssl command, create server certificate pem file which contains
-both public key and private key. Then place the file in `certs/` directory.
+both public key and private key. Then place the file in `certs/` directory
+with name `server.pem`.
 
 ## modify script
 
