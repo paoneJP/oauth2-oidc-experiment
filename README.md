@@ -47,6 +47,7 @@ Run the server with command line `$ python app.py` and access to url
 
 ## todo
 
+  * Verify IDToken function.
   * OAuth2 Implicit Grant Client.
   * OAuth2 Authorization Server.
   * OpenID Connect Implicit Flow RP.
