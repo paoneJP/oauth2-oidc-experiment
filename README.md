@@ -37,7 +37,7 @@ Modify `app_config.py`.
 ## try it !
 
 Run the server with command line `$ python app.py` and access to url
-`https://{{_YOUR_SERVER_FQDN_}}/app`.
+`https://{{_YOUR_SERVER_FQDN_}}/`.
 
 ## restriction
 
