@@ -47,7 +47,6 @@ Run the server with command line `$ python app.py` and access to url
 
 ## todo
 
-  * Verify IDToken function.
   * OAuth2 Implicit Grant Client.
   * OAuth2 Authorization Server.
   * OpenID Connect Implicit Flow RP.
@@ -56,6 +55,9 @@ Run the server with command line `$ python app.py` and access to url
 
 ## changelog
 
+  * release3
+    * [new] id_token verify feature.
+    * [modify] code brushup.
   * release2
     * [new] demo for openid connect authorization code flow client.
     * [new] start web page.
