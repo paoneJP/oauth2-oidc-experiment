@@ -53,11 +53,13 @@ def authn_cb_get():
     r = oauth2urlopen(ctx, flow.server.userinfo_endpoint)
     session['userinfo'] = json.loads(r.read())
 
+    session['id_token_verified'] = flow.verify_id_token(ctx)
+
     bottle.redirect(ctx.target_link_uri)
 
 
 @app.get('/show')
-@view('show.tmpl')
+@view('show_oidc.tmpl')
 def show_get():
     session = bottle.request.environ['beaker.session']
     if not 'context' in session:
@@ -65,5 +67,7 @@ def show_get():
     auth_uri = session['auth_uri']
     context = json.dumps(session['context'].to_dict(), indent=2)
     userinfo = json.dumps(session['userinfo'], indent=2)
+    id_token_verified = session['id_token_verified']
     session.delete()
-    return dict(auth_uri=auth_uri, context=context, userinfo=userinfo)
+    return dict(auth_uri=auth_uri, context=context, userinfo=userinfo,
+                id_token_verified=id_token_verified)

@@ -26,9 +26,7 @@ class IDToken(xdict):
 
     _attributes = ['header',
                    'payload',
-                   '_signature',
-                   '_raw_header',
-                   '_raw_payload']
+                   '_raw_token']
 
     def __init__(self, token=None):
         xdict.__init__(self)
@@ -38,16 +36,13 @@ class IDToken(xdict):
             self._from_jwt(token)
 
     def _from_jwt(self, jwt):
-        h, p, s = str(jwt).split('.', 2)
-        self._raw_header = h
-        self._raw_payload = p
-        self._signature = s
+        self._raw_token = jwt
 
+        h, p, s = str(jwt).split('.', 2)
         d = json.loads(base64.urlsafe_b64decode(h+'=='))
         self.header.update(d)
         d = json.loads(base64.urlsafe_b64decode(p+'=='))
         self.payload.update(d)
 
     def raw(self):
-        rv = self._raw_header + '.' + self._raw_payload + '.' + self._signature
-        return rv
+        return self._raw_token

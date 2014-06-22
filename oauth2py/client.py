@@ -87,7 +87,7 @@ class _BaseFlowClass(object):
         if 'refresh_token' in param:
             context.refresh_token = param['refresh_token']
         if 'expires_in' in param:
-            context.expires_at = time.time() + int(param['expires_in'])
+            context.expires_at = int(time.time()) + int(param['expires_in'])
 
         self._call_hook('after_token_parse_hook', context, param)
 
@@ -128,12 +128,11 @@ class AuthorizationCodeGrant(_BaseFlowClass):
         else:
             raise OAuth2UnsupportedAuthMethodError()
 
-        r = urlopen(self.server.token_endpoint, urlencode(p),
-                     basic_auth=cred).read()
-        r = json.loads(r)
+        r = urlopen(self.server.token_endpoint, urlencode(p), basic_auth=cred)
+        d = json.loads(r.read())
 
         param.clear()
-        param.update(r)
+        param.update(d)
 
 
 class ImplicitGrant(_BaseFlowClass):
