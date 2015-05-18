@@ -17,6 +17,7 @@ def yconnect_auth_uri_customize(context, param):
 
 
 op = OPConfig(
+         issuer='https://auth.login.yahoo.co.jp',
          authorization_endpoint= \
              'https://auth.login.yahoo.co.jp/yconnect/v1/authorization',
          token_endpoint= \

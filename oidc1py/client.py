@@ -1,5 +1,6 @@
 import json
 import base64
+import time
 from Crypto.Util.number import bytes_to_long
 from Crypto.PublicKey import RSA
 from Crypto.Signature import PKCS1_v1_5
@@ -50,8 +51,8 @@ class _BaseFlowMixIn:
         token = context.id_token
         if not self._verify_signature(context):
             return False
-        if not (token.payload.iss == self.server.issuer or \
-                token.payload.aud == self.client.client_id or \
+        if not (token.payload.iss == self.server.issuer and \
+                token.payload.aud == self.client.client_id and \
                 token.payload.exp >= time.time()):
             return False
         if freshness and not token.payload.iat >= time.time() - freshness:
